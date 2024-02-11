@@ -25,13 +25,17 @@
             android:id="@+id/true_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/true_button" />
+            android:backgroundTint="#673AB7"
+            android:text="@string/true_button"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/false_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/false_button" />
+            android:backgroundTint="#673AB7"
+            android:text="@string/false_button"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -39,7 +43,11 @@
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#673AB7"
+        android:drawableEnd="@drawable/arrow_right"
+        android:drawableTint="@color/white"
         android:text="@string/next_button"
+        android:textColor="@color/white"
         app:icon="@drawable/arrow_right"
         app:iconGravity="end" />
 
