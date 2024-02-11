@@ -56,6 +56,10 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple"
         android:text="@string/previous_button"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:drawableStart="@drawable/arrow_left"
+        android:drawableTint="@color/white"
+        app:icon="@drawable/arrow_left"
+        app:iconGravity="start" />
 
 </LinearLayout>
