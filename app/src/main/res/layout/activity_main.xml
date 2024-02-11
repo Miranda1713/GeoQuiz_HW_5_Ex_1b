@@ -25,7 +25,7 @@
             android:id="@+id/true_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#673AB7"
+            android:backgroundTint="@color/purple"
             android:text="@string/true_button"
             android:textColor="@color/white" />
 
@@ -33,7 +33,7 @@
             android:id="@+id/false_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#673AB7"
+            android:backgroundTint="@color/purple"
             android:text="@string/false_button"
             android:textColor="@color/white" />
 
@@ -43,7 +43,7 @@
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#673AB7"
+        android:backgroundTint="@color/purple"
         android:drawableEnd="@drawable/arrow_right"
         android:drawableTint="@color/white"
         android:text="@string/next_button"
