@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.Toast
 import com.flagg.msu.geoquiz.databinding.ActivityMainBinding
 
+private const val TAG = "MainActivity"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate(Bundle?) called")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
