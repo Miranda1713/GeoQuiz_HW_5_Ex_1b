@@ -3,7 +3,6 @@ package com.flagg.msu.geoquiz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import com.flagg.msu.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
