@@ -9,11 +9,13 @@ import com.flagg.msu.geoquiz.databinding.ActivityCheatBinding
 
 const val EXTRA_ANSWER_SHOWN = "com.flagg.msu.geoquiz.answer_shown"
 private const val EXTRA_ANSWER_IS_TRUE = "com.flagg.msu.geoquiz.answer_is_true"
+const val EXTRA_GO_BACK = "com.flagg.msu.geoquiz.go_back"
 class CheatActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCheatBinding
 
     private var answerIsTrue = false
+    private var goBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +23,7 @@ class CheatActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false)
+        goBack = intent.getBooleanExtra(EXTRA_GO_BACK, false)
 
         binding.showAnswerButton.setOnClickListener {
             val answerText = when {
@@ -29,6 +32,11 @@ class CheatActivity : AppCompatActivity() {
             }
             binding.answerTextView.setText(answerText)
             setAnswerShownResult(true)
+        }
+
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -42,7 +50,7 @@ class CheatActivity : AppCompatActivity() {
     companion object {
         fun newIntent(packageContext: Context, answerIsTrue: Boolean): Intent {
             return Intent(packageContext, CheatActivity::class.java).apply {
-            putExtra(EXTRA_ANSWER_IS_TRUE, answerIsTrue)
+                putExtra(EXTRA_ANSWER_IS_TRUE, answerIsTrue)
             }
         }
     }

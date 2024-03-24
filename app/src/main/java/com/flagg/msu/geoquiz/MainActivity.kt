@@ -1,5 +1,7 @@
 package com.flagg.msu.geoquiz
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +24,18 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         // Handle the result
+        if (result.resultCode == Activity.RESULT_OK) {
+            quizViewModel.isCheater =
+                result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
+        }
+    }
+
+    companion object {
+        fun newIntent(packageContext: Context, goBack: Boolean): Intent {
+            return Intent(packageContext, MainActivity::class.java).apply {
+                putExtra(EXTRA_GO_BACK, goBack)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,16 +68,15 @@ class MainActivity : AppCompatActivity() {
             cheatLauncher.launch(intent)
         }
 
+        binding.previousButton.setOnClickListener {
+          quizViewModel.moveToPrevious()
+          updateQuestion()
+        }
 
-      //binding.previousButton.setOnClickListener {
-      //    currentIndex = (currentIndex - 1) % questionBank.size
-      //    updateQuestion()
-      //}
-
-      //binding.questionTextView.setOnClickListener {
-      //    currentIndex = (currentIndex + 1) % questionBank.size
-      //    updateQuestion()
-      //}
+        //binding.questionTextView.setOnClickListener {
+          //currentIndex = (currentIndex + 1) % questionBank.size
+          //updateQuestion()
+        //}
 
         updateQuestion()
     }
@@ -101,10 +114,10 @@ class MainActivity : AppCompatActivity() {
     private fun checkAnswer(userAnswer: Boolean) {
         val correctAnswer = quizViewModel.currentQuestionAnswer
 
-        val messageResId = if (userAnswer == correctAnswer) {
-            R.string.correct_toast
-        } else {
-            R.string.incorrect_toast
+        val messageResId = when {
+            quizViewModel.isCheater -> R.string.judgment_toast
+                userAnswer == correctAnswer -> R.string.correct_toast
+            else -> R.string.incorrect_toast
         }
 
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
