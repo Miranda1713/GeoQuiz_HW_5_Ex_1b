@@ -5,12 +5,17 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import com.flagg.msu.geoquiz.databinding.ActivityCheatBinding
 
+private const val TAG = "CheatActivity"
 const val EXTRA_ANSWER_SHOWN = "com.flagg.msu.geoquiz.answer_shown"
 private const val EXTRA_ANSWER_IS_TRUE = "com.flagg.msu.geoquiz.answer_is_true"
 const val EXTRA_GO_BACK = "com.flagg.msu.geoquiz.go_back"
 class CheatActivity : AppCompatActivity() {
+
+    private val quizViewModel: QuizViewModel by viewModels()
 
     private lateinit var binding: ActivityCheatBinding
 
@@ -19,8 +24,11 @@ class CheatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate(Bundle?) called")
         binding = ActivityCheatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Log.d(TAG, "Got a QuizViewModel: $quizViewModel")
 
         answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false)
         goBack = intent.getBooleanExtra(EXTRA_GO_BACK, false)
@@ -38,6 +46,31 @@ class CheatActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart() called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume() called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause() called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop() called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy() called")
     }
 
     private fun setAnswerShownResult(isAnswerShown: Boolean) {
