@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.flagg.msu.geoquiz.databinding.ActivityCheatBinding
 
@@ -41,6 +42,7 @@ class CheatActivity : AppCompatActivity() {
             binding.answerTextView.setText(answerText)
             setAnswerShownResult(true)
         }
+
 
         binding.backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

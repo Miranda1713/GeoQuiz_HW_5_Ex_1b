@@ -30,14 +30,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        fun newIntent(packageContext: Context, goBack: Boolean): Intent {
-            return Intent(packageContext, MainActivity::class.java).apply {
-                putExtra(EXTRA_GO_BACK, goBack)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate(Bundle?) called")
@@ -81,6 +73,15 @@ class MainActivity : AppCompatActivity() {
         updateQuestion()
     }
 
+    companion object {
+        fun newIntent(packageContext: Context, goBack: Boolean): Intent {
+            return Intent(packageContext, MainActivity::class.java).apply {
+                putExtra(EXTRA_GO_BACK, goBack)
+            }
+        }
+    }
+
+
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart() called")
@@ -115,12 +116,12 @@ class MainActivity : AppCompatActivity() {
         val correctAnswer = quizViewModel.currentQuestionAnswer
 
         val messageResId = when {
-            quizViewModel.isCheater -> R.string.judgment_toast
+                quizViewModel.isCheater -> R.string.judgment_toast
                 userAnswer == correctAnswer -> R.string.correct_toast
             else -> R.string.incorrect_toast
         }
 
-            Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
+        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show()
     }
 }
